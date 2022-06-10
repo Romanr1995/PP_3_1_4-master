@@ -1,5 +1,5 @@
 const data = document.getElementById("data-user");
-const url = "http://localhost:8080/rest/auth";
+const url = "http://localhost:8080/v1/users/auth";
 const panel = document.getElementById("user-panel");
 
 function userAuthInfo() {

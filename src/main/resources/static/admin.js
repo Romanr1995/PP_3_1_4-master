@@ -1,8 +1,4 @@
-    const url = "http://localhost:8080/rest/";
-    const urlAdd = "http://localhost:8080/rest/add";
-    const urlUpdate = "http://localhost:8080/rest/update";
-    const urlDelete = "http://localhost:8080/rest/delete/";
-
+    const url = "http://localhost:8080/v1/users/";
     const renderTable = document.getElementById("user-data");
     const addForm = document.getElementById("add-form");
 
@@ -59,7 +55,7 @@
     roles: roles
 }
 
-    fetch(urlAdd, {
+    fetch(url, {
     method: "POST",
     headers: {
     'Accept': 'application/json',
@@ -104,7 +100,7 @@
 }
 
     async function deleteUser() {
-    await fetch(urlDelete + document.getElementById('idDelete').value, {
+    await fetch(url + document.getElementById('idDelete').value, {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json',
@@ -155,7 +151,7 @@
     roles: roles
 }
 
-    await fetch(urlUpdate, {
+    await fetch(url, {
     method: "PUT",
     headers: {
     'Accept': 'application/json',
@@ -169,7 +165,7 @@
 }
 
     const adminData = document.getElementById("data-admin");
-    const urlAuth = "http://localhost:8080/rest/auth";
+    const urlAuth = "http://localhost:8080/v1/users/auth";
     const panel = document.getElementById("admin-panel");
 
     function userAuthInfo() {

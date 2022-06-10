@@ -12,13 +12,13 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rest")
-public class AppRestController {
+@RequestMapping("/v1/users")
+public class AdminRestController {
 
     private final UserService userService;
 
     @Autowired
-    public AppRestController(UserService userService) {
+    public AdminRestController(UserService userService) {
         this.userService = userService;
     }
 
@@ -32,13 +32,13 @@ public class AppRestController {
         return new ResponseEntity<>(userService.getById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<User> addNewUser(@RequestBody User user) {
         userService.saveUser(user);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody User user,
                                         BindingResult bindingResult) {
 
@@ -49,10 +49,10 @@ public class AppRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         userService.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/auth")

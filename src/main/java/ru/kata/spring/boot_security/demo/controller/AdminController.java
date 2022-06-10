@@ -9,6 +9,6 @@ public class AdminController {
 
     @RequestMapping
     public String showAllUser() {
-        return "users";
+        return "admin";
     }
 }

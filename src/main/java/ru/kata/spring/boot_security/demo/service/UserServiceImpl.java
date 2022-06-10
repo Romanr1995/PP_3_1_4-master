@@ -19,13 +19,19 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     private UserJpaRepository userJpaRepository;
 
-    @Autowired
+
     private RoleJpaRepository roleJpaRepository;
-    @Autowired
+
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    public UserServiceImpl(UserJpaRepository userJpaRepository, RoleJpaRepository roleJpaRepository,
+                           BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userJpaRepository = userJpaRepository;
+        this.roleJpaRepository = roleJpaRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
